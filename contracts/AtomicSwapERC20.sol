@@ -4,7 +4,6 @@ import "./ERC20.sol";
 
 
 contract AtomicSwapERC20 {
-
     struct Swap {
         uint256 timelock;
         uint256 erc20Value;
@@ -79,7 +78,9 @@ contract AtomicSwapERC20 {
         emit Open(_swapID, _withdrawTrader, _secretLock);
     }
 
-    function close(bytes32 _swapID, bytes memory _secretKey) public onlyOpenSwaps(_swapID) onlyWithSecretKey(_swapID, _secretKey) {
+    function close(bytes32 _swapID, bytes memory _secretKey) public onlyOpenSwaps(_swapID)
+        onlyWithSecretKey(_swapID, _secretKey) {
+
         // Close the swap.
         Swap memory swap = swaps[_swapID];
         swaps[_swapID].secretKey = _secretKey;
