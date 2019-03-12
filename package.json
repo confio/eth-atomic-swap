@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "truffle test",
-    "coverage": "./node_modules/.bin/solidity-coverage"
+    "compile": "truffle compile",
+    "coverage": "./node_modules/.bin/solidity-coverage",
+    "deploy-dev": "truffle deploy --network=\"development\" --reset",
+    "deploy-prod": "truffle deploy --network=\"ropsten\"",
+    "ganache": "ganache-cli"
   },
   "repository": {
     "type": "git",
@@ -21,9 +25,12 @@
   },
   "homepage": "https://github.com/republicprotocol/atomic-swap#readme",
   "devDependencies": {
-    "solidity-coverage": "^0.4.8"
-  },
-  "dependencies": {
-    "coveralls": "^3.0.0"
+    "bn.js": "^4.11.8",
+    "chai": "^4.2.0",
+    "dotenv": "^6.2.0",
+    "ganache-cli": "^6.4.1",
+    "openzeppelin-test-helpers": "^0.1.2",
+    "solhint": "^2.0.0",
+    "truffle": "^5.0.7"
   }
 }
