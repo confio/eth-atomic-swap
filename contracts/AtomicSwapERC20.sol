@@ -60,8 +60,10 @@ contract AtomicSwapERC20 {
         require(swapStates[_swapID] == States.INVALID);
         // Transfer value from the ERC20 trader to this contract.
         ERC20 erc20Contract = ERC20(_erc20ContractAddress);
+
         require(_erc20Value <= erc20Contract.allowance(msg.sender, address(this)));
         require(erc20Contract.transferFrom(msg.sender, address(this), _erc20Value));
+        // require(erc20Contract.transfer(address(this), _erc20Value));
 
         // Store the details of the swap.
         Swap memory swap = Swap({
