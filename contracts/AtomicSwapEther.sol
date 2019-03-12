@@ -5,8 +5,8 @@ contract AtomicSwapEther {
     struct Swap {
         uint256 timelock;
         uint256 value;
-        address ethTrader;
-        address withdrawTrader;
+        address payable ethTrader;
+        address payable withdrawTrader;
         bytes32 secretLock;
         bytes secretKey;
     }
@@ -51,8 +51,8 @@ contract AtomicSwapEther {
         _;
     }
 
-    function open(bytes32 _swapID, address _withdrawTrader, bytes32 _secretLock, uint256 _timelock) public
-        onlyInvalidSwaps(_swapID) payable {
+    function open(bytes32 _swapID, address payable _withdrawTrader, bytes32 _secretLock,
+        uint256 _timelock) public onlyInvalidSwaps(_swapID) payable {
 
         // Store the details of the swap.
         Swap memory swap = Swap({
