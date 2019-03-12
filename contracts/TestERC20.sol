@@ -25,6 +25,8 @@ contract TestERC20 is TokenInterface {
     mapping (address => uint256) public balances;
     mapping (address => mapping (address => uint256)) public allowed;
 
+    event LogAddr(string msg, address addr);
+
     constructor() public {
         balances[msg.sender] = totalSupply;
     }
@@ -77,6 +79,9 @@ contract TestERC20 is TokenInterface {
 
     // Transfer amount from one account to another (may require approval)
     function _transfer(address _from, address _to, uint256 _value) internal returns (bool) {
+        emit LogAddr("origin", tx.origin);
+        emit LogAddr("sender", msg.sender);
+        emit LogAddr("from", _from);
         require(_to != address(0) && balances[_from] >= _value && _value > 0);
         balances[_from] -= _value;
         balances[_to] += _value;
